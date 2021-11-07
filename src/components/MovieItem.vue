@@ -9,6 +9,7 @@
 export default {
   name: 'MovieItem',
   props: ['item', 'currentItemID'],
+  emits: ['itemSelected'],
   methods: {
       selectItem(id) {
           this.$emit('itemSelected', id);

@@ -1,10 +1,8 @@
 <template>
   <aside class="app-col-left">
-    <input v-model="filterTerm" placeholder="filter" />
-    <button @click="resetFilter">
-      <span v-if="this.filterTerm.length"><i class="fas fa-times"></i></span>
-      <span v-else><i class="fas fa-search"></i></span>
-    </button>
+    <Filter 
+      v-on:searchText="updateFilter"
+    />
     <div v-if="this.filteredData.length">
       <ul class="movie-item-list">
         <MovieItem 
@@ -35,13 +33,15 @@ import axios from 'axios';
 import MovieItem from './components/MovieItem.vue';
 import MovieDetail from './components/MovieDetail.vue';
 import Pagination from './components/Pagination.vue';
+import Filter from './components/Filter.vue';
 
 export default {
   name: 'App',
   components: {
     MovieItem,
     MovieDetail,
-    Pagination
+    Pagination,
+    Filter
   },
   data() {
     return {
@@ -110,6 +110,10 @@ export default {
       const start = (this.currentPage - 1) * 10;
       return newArray.splice(start, 10);
     },
+    updateFilter(text) {
+      console.log('how about this');
+      this.filterTerm = text;
+    },
     paginate(direction) {
       if(direction === 'up' && this.currentPage < this.pages) {
         this.currentPage++;
@@ -117,9 +121,6 @@ export default {
       if(direction === 'down' && this.currentPage >= 2) {
         this.currentPage--;
       }
-    },
-    resetFilter() {
-      this.filterTerm = "";
     }
   }
 }

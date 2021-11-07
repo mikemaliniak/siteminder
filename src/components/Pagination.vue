@@ -1,7 +1,7 @@
 <template>
     <div v-if="pages > 1" class="pagination">
         <button @click="paginate('down')"><i class="fas fa-caret-left"></i></button>
-        <span>page: {{currentPage}}/{{pages}}</span>
+        <span>Page: {{currentPage}}/{{pages}}</span>
         <button @click="paginate('up')"><i class="fas fa-caret-right"></i></button>
     </div>
 </template>
@@ -10,6 +10,7 @@
 export default {
   name: 'Pagination',
   props: ['pages', 'currentPage'],
+  emits: ['paginate'],
   methods: {
       paginate(dir) {
         this.$emit('paginate', dir);
