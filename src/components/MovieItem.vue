@@ -1,5 +1,6 @@
 <template>
     <li class="movie-item" @click="selectItem(item.imdbID)" :class="{ active: item.imdbID === currentItemID }">
+        <img v-bind:src="item.Poster" v-bind:alt="item.Title"/>
         <span class="movie-item-title">{{ item.Title}}</span>
         <span class="movie-item-year">{{ item.Year }}</span>
     </li>

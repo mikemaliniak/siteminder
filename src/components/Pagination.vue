@@ -28,4 +28,8 @@ export default {
     justify-content: space-between;
     padding: 5px;
 }
+
+button {
+    cursor: pointer;
+}
 </style>

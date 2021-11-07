@@ -1,6 +1,6 @@
 <template>
-    <div v-bind:class="{ filter: true, error}">
-        <input v-model="searchTerm" placeholder="Search here" class="filter-input" />
+    <div v-bind:class="{ filter: true, error, focus: isFocused}">
+        <input v-model="searchTerm" placeholder="Search here" class="filter-input" @focus="setFocus" @blur="removeFocus" />
         <button @click="resetFilter" class="filter-btn">
         <span v-if="this.searchTerm.length"><i class="fas fa-times"></i></span>
         <span v-else><i class="fas fa-search"></i></span>
@@ -14,7 +14,8 @@ export default {
     props: ['error'],
     data() {
         return {
-            searchTerm: ""
+            searchTerm: "",
+            isFocused: false
         }
     },
     watch: {
@@ -25,6 +26,12 @@ export default {
     methods: {
         resetFilter() {
             this.searchTerm = "";
+        },
+        setFocus() {
+            this.isFocused = true;
+        },
+        removeFocus() {
+            this.isFocused = false;
         }
     }
 }
@@ -39,7 +46,7 @@ export default {
     justify-content: space-between;
     cursor: pointer;
 }
-.filter:focus {
+.filter.focus {
     border: 3px solid #99ccff;
 }
 .filter-btn, .filter-input {
@@ -56,5 +63,8 @@ export default {
 }
 .filter-btn .fas {
     color: #ccc;
+}
+.filter-input {
+    width: 100%;
 }
 </style>
