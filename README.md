@@ -1,4 +1,4 @@
-# siteminder - Michael Maliniak Assessment
+# Siteminder - Michael Maliniak Assessment
 
 ## Step 1 - Project setup, download all dependencies
 ```
@@ -15,15 +15,7 @@ yarn serve
 http://localhost:8080/
 ```
 
-### Optional Command 1: Run  unit tests
+### Unit test command to run  unit tests
 ```
 yarn test:unit
 ```
-
-### Optional Command 2: Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

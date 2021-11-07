@@ -43,7 +43,8 @@ export default {
   props: ['item'],
   methods: {
       linebreak: function(text) {
-          return text.replaceAll(",", "</br>");
+          if(typeof text === 'string') return text.replaceAll(",", "</br>");
+          return "";
       }
   }
 }
