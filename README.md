@@ -22,7 +22,10 @@ yarn test:unit
 
 ## Browser Compatibility
 ```
-Has been tested to work in: Google Chrome (Version 95.0.4638.69 (Official Build) (x86_64)), Firefox (94.0.1 (64-bit)), Safari (Version 14.1.2 (16611.3.10.1.6))
+Has been tested to work in: 
+- Google Chrome (Version 95.0.4638.69 (Official Build) (x86_64))
+- Firefox (94.0.1 (64-bit)) 
+- Safari (Version 14.1.2 (16611.3.10.1.6))
 ```
 
 ## Note: Development Environment
