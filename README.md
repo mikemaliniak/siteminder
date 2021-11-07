@@ -1,26 +1,26 @@
-# siteminder
+# siteminder - Michael Maliniak Assessment
 
-## Project setup
+## Step 1 - Project setup, download all dependencies
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Step 2 - Compiles and hot-reloads for development, easiest way to view application
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### Step 3 - Open new browser window, ie Google Chrome
 ```
-yarn build
+http://localhost:8080/
 ```
 
-### Run your unit tests
+### Optional Command 1: Run  unit tests
 ```
 yarn test:unit
 ```
 
-### Lints and fixes files
+### Optional Command 2: Lints and fixes files
 ```
 yarn lint
 ```
