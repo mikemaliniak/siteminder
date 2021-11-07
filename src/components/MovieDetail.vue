@@ -53,9 +53,14 @@ export default {
 <style scoped>
 .movie-empty {
     display: flex;
+    height: 100vh;
     width: 100%;
+    justify-content: center;
     align-content: center;
     align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #999;
 }
 .movie-header {
     background: rgb(0,0,0);

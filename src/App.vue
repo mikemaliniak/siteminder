@@ -1,21 +1,23 @@
 <template>
   <aside class="app-col-left">
-    <Filter 
-      v-on:searchText="updateFilter"
-      v-bind:error="!this.filteredData.length && this.filterTerm"
-    />
-    <div v-if="this.filteredData.length">
-      <ul class="movie-item-list">
-        <MovieItem 
-          v-for="item in limitArray(filteredData)"
-          v-bind:item="item"
-          v-bind:key="item.imdbID"
-          v-bind:currentItemID="currentItemID"
-          v-on:itemSelected="getMovieItem"
-        />
-      </ul>
+    <div class="app-col-uppper">
+      <Filter 
+        v-on:searchText="updateFilter"
+        v-bind:error="!this.filteredData.length && this.filterTerm"
+      />
+      <div v-if="this.filteredData.length">
+        <ul class="movie-item-list">
+          <MovieItem 
+            v-for="item in limitArray(filteredData)"
+            v-bind:item="item"
+            v-bind:key="item.imdbID"
+            v-bind:currentItemID="currentItemID"
+            v-on:itemSelected="getMovieItem"
+          />
+        </ul>
+      </div>
+      <div v-else class="no-movie-error">Sorry, there are no results to display</div>
     </div>
-    <div v-else>Sorry, there are no results to display</div>
     <Pagination 
       v-bind:pages="pages"
       v-bind:currentPage="currentPage"
@@ -131,22 +133,29 @@ body, html { margin: 0; }
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
 .app-col-left {
   width: 25%;
   min-width: 25%;
-  height: 100vh;
-  overflow: auto;
+  height: 100%;
   border-right: 1px solid #ccc;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .app-col-right {
   width: 75%;
   min-width: 75%;
+  overflow-y: auto;
+}
+
+.no-movie-error {
+  margin-left: 10px;
+  margin-top: 20px;
 }
 
 .movie-item-list {

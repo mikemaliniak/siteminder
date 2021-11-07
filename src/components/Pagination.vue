@@ -21,12 +21,11 @@ export default {
 <style scoped>
 .pagination {
     box-sizing: border-box;
-    position: absolute;
-    bottom: 0px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 5px;
+    background: #fff;
 }
 
 button {

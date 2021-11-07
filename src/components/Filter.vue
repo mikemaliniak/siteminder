@@ -47,7 +47,7 @@ export default {
     cursor: pointer;
 }
 .filter.focus {
-    border: 3px solid #99ccff;
+    border: 3px solid #091bd5;
 }
 .filter-btn, .filter-input {
     background: none;
