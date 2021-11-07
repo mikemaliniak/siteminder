@@ -67,6 +67,8 @@ export default {
     background: linear-gradient(0deg, rgba(10,10,10,1) 45%, rgba(69,67,67,1) 100%);
     color: #ffffff;
     padding: 120px 80px 60px;
+    position: relative;
+    z-index: 10;
 }
 .movie-header-title {
     margin-top: 0;
@@ -81,17 +83,6 @@ export default {
     display: flex;
     position: relative;
 
-}
-.movie-info::after {
-    content: "";
-    display: block;
-    width: 10px;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    background: rgb(208,204,204);
-    background: linear-gradient(90deg, rgb(233, 232, 232) 0%, rgba(255,255,255,1) 80%);
 }
 .movie-poster {
     margin-bottom: 20px;

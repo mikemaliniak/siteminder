@@ -151,6 +151,21 @@ body, html { margin: 0; }
   width: 75%;
   min-width: 75%;
   overflow-y: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.app-col-right::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+    background: rgb(208,204,204);
+    background: linear-gradient(90deg, rgb(233, 232, 232) 0%, rgba(255,255,255,1) 80%);
 }
 
 .no-movie-error {
