@@ -27,11 +27,16 @@ export default {
     border-bottom: 1px solid #ccc;
     list-style-type: none;
     max-height: 80px;
+    width: 100%;
     display: flex;
     padding: 10px;
     overflow: hidden;
-    min-width: 350px;
     cursor: pointer;
+}
+
+.movie-item-details {
+    width: 100%;
+    overflow: hidden;
 }
 
 .movie-item-poster {
@@ -40,12 +45,12 @@ export default {
 }
 .movie-item-title {
     display: block;
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 330px;
+    width: 100%;
 }
 .active {
     border: 2px solid #091bd5;

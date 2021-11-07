@@ -5,7 +5,7 @@
             <span class="movie-header-year">{{ item.Year}}</span>
         </div>
         <div class="movie-info">
-            <aside>
+            <aside class="movie-extra-wrapper">
                 <img v-bind:src="item.Poster" v-bind:alt="item.Title" class="movie-poster"/>
                 <div class="movie-extra">
                     <div class="movie-extra-upper">
@@ -53,8 +53,8 @@ export default {
 <style scoped>
 .movie-empty {
     display: flex;
-    height: 100vh;
-    width: 100%;
+    height: 80vh;
+    width: 80%;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -63,10 +63,10 @@ export default {
     color: #999;
 }
 .movie-header {
-    background: rgb(0,0,0);
-    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(88,88,89,1) 100%, rgba(96,97,97,1) 100%);
+    background: rgb(10,10,10);
+    background: linear-gradient(0deg, rgba(10,10,10,1) 45%, rgba(69,67,67,1) 100%);
     color: #ffffff;
-    padding: 180px 150px 60px;
+    padding: 120px 80px 60px;
 }
 .movie-header-title {
     margin-top: 0;
@@ -77,9 +77,10 @@ export default {
     font-size: 1.5em;
 }
 .movie-info {
-    padding: 40px 150px;
+    padding: 40px 80px;
     display: flex;
     position: relative;
+
 }
 .movie-info::after {
     content: "";
@@ -90,10 +91,11 @@ export default {
     top: 0px;
     left: 0px;
     background: rgb(208,204,204);
-    background: linear-gradient(90deg, rgb(233, 232, 232) 0%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(90deg, rgb(233, 232, 232) 0%, rgba(255,255,255,1) 80%);
 }
 .movie-poster {
     margin-bottom: 20px;
+    width: 100%;
 }
 .movie-extra-heading {
     display: block;
@@ -105,6 +107,10 @@ export default {
 
 .movie-description-heading {
     margin-top: 0;
+}
+
+.movie-extra-wrapper {
+    max-width: 250px;
 }
 
 .movie-extra-container {
