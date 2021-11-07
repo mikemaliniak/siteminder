@@ -2,6 +2,7 @@
   <aside class="app-col-left">
     <Filter 
       v-on:searchText="updateFilter"
+      v-bind:error="!this.filteredData.length && this.filterTerm"
     />
     <div v-if="this.filteredData.length">
       <ul class="movie-item-list">
@@ -109,7 +110,6 @@ export default {
       return newArray.splice(start, 10);
     },
     updateFilter(text) {
-      console.log('how about this');
       this.filterTerm = text;
     },
     paginate(direction) {
