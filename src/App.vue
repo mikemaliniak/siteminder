@@ -17,11 +17,11 @@
       </ul>
     </div>
     <div v-else>Sorry, there are no results to display</div>
-    <div v-if="this.pagination > 1" class="pagination">
-      <button @click="pageDown"><i class="fas fa-caret-left"></i></button>
-      <span>page: {{this.currentPage}}/{{this.pagination}}</span>
-      <button @click="pageUp"><i class="fas fa-caret-right"></i></button>
-    </div>
+    <Pagination 
+      v-bind:pages="pages"
+      v-bind:currentPage="currentPage"
+      v-on:paginate="paginate"
+       />
   </aside>
   <section class="app-col-right">
       <MovieDetail v-bind:item="currentItem" />
@@ -34,12 +34,14 @@ const INIT_SEARCH_TERM = 'Good';
 import axios from 'axios';
 import MovieItem from './components/MovieItem.vue';
 import MovieDetail from './components/MovieDetail.vue';
+import Pagination from './components/Pagination.vue';
 
 export default {
   name: 'App',
   components: {
     MovieItem,
-    MovieDetail
+    MovieDetail,
+    Pagination
   },
   data() {
     return {
@@ -62,7 +64,7 @@ export default {
         if(item.Title.toLowerCase().includes(this.filterTerm.toLowerCase())) return true;
       }).sort((a, b) => a.Title.localeCompare(b.Title));
     },
-    pagination() {
+    pages() {
       return Math.ceil(this.filteredData.length/10);
     }
   },
@@ -108,13 +110,11 @@ export default {
       const start = (this.currentPage - 1) * 10;
       return newArray.splice(start, 10);
     },
-    pageUp() {
-      if(this.currentPage < this.pagination) {
+    paginate(direction) {
+      if(direction === 'up' && this.currentPage < this.pages) {
         this.currentPage++;
       }
-    },
-    pageDown() {
-      if(this.currentPage >= 2) {
+      if(direction === 'down' && this.currentPage >= 2) {
         this.currentPage--;
       }
     },
@@ -152,15 +152,5 @@ body, html { margin: 0; }
 
 .movie-item-list {
   padding-left: 0;
-}
-
-.pagination {
-  box-sizing: border-box;
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
 }
 </style>
