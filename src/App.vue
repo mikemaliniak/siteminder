@@ -1,17 +1,12 @@
 <template>
-  <aside class="main-col-left">
-    <div v-if="this.pagination > 1">
-      <button @click="pageDown" v-if="this.currentPage !== 1"><i class="fas fa-minus"></i></button>
-      <span>page: {{this.currentPage}}/{{this.pagination}}</span>
-      <button @click="pageUp" v-if="this.currentPage !== this.pagination"><i class="fas fa-plus"></i></button>
-    </div>
+  <aside class="app-col-left">
     <input v-model="filterTerm" placeholder="filter" />
     <button @click="resetFilter">
       <span v-if="this.filterTerm.length"><i class="fas fa-times"></i></span>
       <span v-else><i class="fas fa-search"></i></span>
     </button>
     <div v-if="this.filteredData.length">
-      <ul>
+      <ul class="movie-item-list">
         <MovieItem 
           v-for="item in limitArray(filteredData)"
           v-bind:item="item"
@@ -22,8 +17,13 @@
       </ul>
     </div>
     <div v-else>Sorry, there are no results to display</div>
+    <div v-if="this.pagination > 1" class="pagination">
+      <button @click="pageDown"><i class="fas fa-caret-left"></i></button>
+      <span>page: {{this.currentPage}}/{{this.pagination}}</span>
+      <button @click="pageUp"><i class="fas fa-caret-right"></i></button>
+    </div>
   </aside>
-  <section class="main-col-right">
+  <section class="app-col-right">
       <MovieDetail v-bind:item="currentItem" />
   </section>
 </template>
@@ -126,17 +126,41 @@ export default {
 </script>
 
 <style>
+body, html { margin: 0; }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
-  width: 100%;
-  height: 100vh;
+  height: 100%;
+  overflow: hidden;
 }
 
-.main-col-left {
-  width: 25vw;
-  min-width: 25vw;
+.app-col-left {
+  width: 25%;
+  min-width: 25%;
+  height: 100vh;
+  overflow: auto;
+  border-right: 1px solid #ccc;
+  position: relative;
+}
+
+.app-col-right {
+  width: 75%;
+  min-width: 75%;
+}
+
+.movie-item-list {
+  padding-left: 0;
+}
+
+.pagination {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 }
 </style>
