@@ -10,7 +10,7 @@
           v-bind:item="item"
           v-bind:key="item.imdbID"
           v-bind:currentItemID="currentItemID"
-          v-on:itemSelected="updateItem"
+          v-on:itemSelected="getMovieItem"
         />
       </ul>
     </div>
@@ -25,7 +25,6 @@
       <MovieDetail v-bind:item="currentItem" />
   </section>
 </template>
-
 <script>
 const INIT_SEARCH_TERM = 'Good';
 
@@ -54,7 +53,7 @@ export default {
   },
   created() {
     for(let i = 1; i < 6; i++) {
-      this.getDataRequest(i);
+      this.getMasterData(i);
     }
   },
   computed: {
@@ -74,7 +73,7 @@ export default {
     }
   },
   methods: {
-    async getDataRequest(page) {
+    async getMasterData(page) {
       const url = `http://www.omdbapi.com/?s=${INIT_SEARCH_TERM}&apikey=${process.env.VUE_APP_API_KEY}&page=${page}`;
       try {
         const { data: { Response, Search, Error } } = await axios.get(url);
@@ -90,8 +89,7 @@ export default {
         console.log(err);
       }
     },
-    async updateItem(id) {
-
+    async getMovieItem(id) {
       const url = `http://www.omdbapi.com/?i=${id}&apikey=${process.env.VUE_APP_API_KEY}&plot=full`;
       try {
         const { data } = await axios.get(url);
