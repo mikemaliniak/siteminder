@@ -43,6 +43,7 @@ export default {
     width: 40px;
     margin-right: 10px;
 }
+
 .movie-item-title {
     display: block;
     font-size: 1.25em;
@@ -52,6 +53,7 @@ export default {
     text-overflow: ellipsis;
     width: 100%;
 }
+
 .active {
     border: 2px solid #091bd5;
     background: rgb(255,255,255);

@@ -55,6 +55,9 @@ export default {
     }
   },
   created() {
+    // From all reports we are only able to get 10 items from the API at a time as mentioned
+    // https://www.themoviedb.org/talk/522eeae419c2955e90252e23 . To overcome this we make several
+    // requests icrementing the page by 1 and then push the data to a master array.
     for(let i = 1; i < 6; i++) {
       this.getMasterData(i);
     }
