@@ -192,10 +192,13 @@ body, html { margin: 0; }
 
 .movie-item-list {
   padding-left: 0;
+  background-color: #fff;
 }
 
 .loading {
+  color: #ccc;
   margin-left: 10px;
-  font: bold;
+  margin-top: 20px;
+  font-weight: bold;
 }
 </style>

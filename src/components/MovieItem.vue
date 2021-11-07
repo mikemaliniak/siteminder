@@ -32,6 +32,7 @@ export default {
     padding: 10px;
     overflow: hidden;
     cursor: pointer;
+    background-color: #fff;
 }
 
 .movie-item-details {
