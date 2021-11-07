@@ -121,9 +121,9 @@ describe('MovieItem.vue', () => {
     })
 });
 
-describe('MovieItem.vue', () => {
-    it('renders a div', () => {
-      const wrapper = mount(MovieItem, {
+describe('MovieDetail.vue', () => {
+    it('renders a moviedetail component', () => {
+      const wrapper = mount(MovieDetail, {
         propsData: {
             item: {
                 Title: "A Few Good Men",
@@ -131,7 +131,8 @@ describe('MovieItem.vue', () => {
                 imdbID: "aabbcc",
                 Poster: "https://m.media-amazon.com/images/M/MV5BMmVmODY1MzEtYTMwZC00MzNhLWFkNDMtZjAwM2EwODUxZTA5XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
                 Language: "English",
-                Runtime: "120 mins"
+                Runtime: "120 mins",
+                Actors: "Tom Cruise"
             }
         }
       })
@@ -142,6 +143,6 @@ describe('MovieItem.vue', () => {
       expect(wrapper.props().item.Poster).toBe("https://m.media-amazon.com/images/M/MV5BMmVmODY1MzEtYTMwZC00MzNhLWFkNDMtZjAwM2EwODUxZTA5XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg");
       expect(wrapper.props().item.Language).toBe("English");
       expect(wrapper.props().item.Runtime).toBe("120 mins");
-
+      expect(wrapper.props().item.Actors).toBe("Tom Cruise");
     })
   })
