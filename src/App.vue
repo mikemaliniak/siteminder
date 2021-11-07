@@ -5,7 +5,8 @@
         v-on:searchText="updateFilter"
         v-bind:error="!this.filteredData.length && this.filterTerm"
       />
-      <div v-if="this.filteredData.length">
+      <div v-if="loading" class="loading">Loading...</div>
+      <div v-else-if="this.filteredData.length && !loading">
         <ul class="movie-item-list">
           <MovieItem 
             v-for="item in limitArray(filteredData)"
@@ -52,15 +53,14 @@ export default {
       currentItemID: "",
       currentPage: 1,
       filterTerm: "",
+      totalResults: 0,
+      pagesRetrieved: [],
+      loading: true
     }
   },
   created() {
-    // From all reports we are only able to get 10 items from the API at a time as mentioned
-    // https://www.themoviedb.org/talk/522eeae419c2955e90252e23 . To overcome this we make several
-    // requests icrementing the page by 1 and then push the data to a master array.
-    for(let i = 1; i < 6; i++) {
-      this.getMasterData(i);
-    }
+    // Initial data on load as per designs
+    this.getMasterData(1);
   },
   computed: {
     filteredData() {
@@ -70,19 +70,30 @@ export default {
       }).sort((a, b) => a.Title.localeCompare(b.Title));
     },
     pages() {
+      if(this.filterTerm.length === 0) return Math.ceil(this.totalResults);
       return Math.ceil(this.filteredData.length/10);
     }
   },
   watch: {
     filterTerm: function() {
       this.currentPage = 1;
+    },
+    currentPage: function() {
+      if(this.filterTerm.length === 0) {
+        this.getMasterData(this.currentPage);
+      }
     }
   },
   methods: {
     async getMasterData(page) {
+
+      if(this.pagesRetrieved.includes(page)) return;
+
+      this.loading = true;
+
       const url = `http://www.omdbapi.com/?s=${INIT_SEARCH_TERM}&apikey=${process.env.VUE_APP_API_KEY}&page=${page}`;
       try {
-        const { data: { Response, Search, Error } } = await axios.get(url);
+        const { data: { Response, Search, Error, totalResults } } = await axios.get(url);
           if( Response === 'False') {
               throw Error(Error);
           } else {
@@ -90,6 +101,9 @@ export default {
               // clean up and remove dupes to avoid duplicate key errors.
               const uniqueArr = Search.filter((v, i, a) => a.findIndex( t => (t.imdbID === v.imdbID)) === i );
               this.masterData.push(...uniqueArr);
+              this.totalResults = totalResults;
+              this.pagesRetrieved.push(page);
+              this.loading = false;
           }
       } catch(err) {
         console.log(err);
@@ -178,5 +192,10 @@ body, html { margin: 0; }
 
 .movie-item-list {
   padding-left: 0;
+}
+
+.loading {
+  margin-left: 10px;
+  font: bold;
 }
 </style>
