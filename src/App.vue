@@ -70,7 +70,7 @@ export default {
       }).sort((a, b) => a.Title.localeCompare(b.Title));
     },
     pages() {
-      if(this.filterTerm.length === 0) return Math.ceil(this.totalResults);
+      if(this.filterTerm.length === 0) return Math.ceil(this.totalResults/10);
       return Math.ceil(this.filteredData.length/10);
     }
   },
